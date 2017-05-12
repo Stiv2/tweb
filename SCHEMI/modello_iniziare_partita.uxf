@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>930</x>
+      <y>150</y>
+      <w>230</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Richieste di partecipazione
+--
+Accetta richieste
+Rifiuta richieste</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>130</y>
+      <w>280</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Partita
+--
+Robodromo 
+num max giocatori 
+num robot controllati da ciascun giocatore
+Condizioni di fine partita
+Dotazione iniziale upgrade</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>150</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Manager di partita
+--
+                        ...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>170</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+//m1=0..n
+m2=1
+crea  &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1060</x>
+      <y>230</y>
+      <w>140</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-
+//m1=0..n
+
+  gestisce partita &gt;
+  </panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>960</x>
+      <y>370</y>
+      <w>230</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Gestione partita 
+--
+Avvia partia
+Annulla partita</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1320</x>
+      <y>150</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Giocatore
+--
+                        ...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1150</x>
+      <y>190</y>
+      <w>190</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 1
+
+
+&lt; invia richiesta</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>210</y>
+      <w>700</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>680.0;200.0;500.0;190.0;240.0;130.0;100.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1150</x>
+      <y>150</y>
+      <w>190</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>rifiuta richiesta &gt;
+
+
+
+lt=-</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>170</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+//m1=0..n
+gestione 
+richieste &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+</diagram>
