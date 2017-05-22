@@ -5,32 +5,32 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>230</x>
-      <y>70</y>
+      <y>120</y>
       <w>210</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>theTrCtrl:
-TrainingController</panel_attributes>
+    <panel_attributes>thePartCtrl:
+PartitaController</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>320</x>
-      <y>100</y>
+      <y>150</y>
       <w>30</w>
-      <h>440</h>
+      <h>520</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;420.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>320</x>
-      <y>150</y>
+      <y>200</y>
       <w>20</w>
-      <h>340</h>
+      <h>430</h>
     </coordinates>
     <panel_attributes>
 </panel_attributes>
@@ -40,33 +40,33 @@ TrainingController</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>80</x>
-      <y>150</y>
+      <y>200</y>
       <w>260</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-eseguiProgramma()</panel_attributes>
+dichiaraFine()</panel_attributes>
     <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>620</x>
-      <y>70</y>
+      <y>120</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>training:
-Training</panel_attributes>
+    <panel_attributes>theMatch:
+Match</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>680</x>
-      <y>190</y>
+      <y>240</y>
       <w>20</w>
-      <h>230</h>
+      <h>360</h>
     </coordinates>
     <panel_attributes>
 layer=-2
@@ -77,23 +77,23 @@ layer=-2
     <id>Relation</id>
     <coordinates>
       <x>680</x>
-      <y>100</y>
+      <y>150</y>
       <w>30</w>
-      <h>400</h>
+      <h>500</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;480.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>330</x>
-      <y>170</y>
+      <y>240</y>
       <w>370</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-exe()
+declaresEnd()
 </panel_attributes>
     <additional_attributes>350.0;20.0;10.0;20.0</additional_attributes>
   </element>
@@ -101,12 +101,12 @@ exe()
     <id>Relation</id>
     <coordinates>
       <x>330</x>
-      <y>400</y>
+      <y>560</y>
       <w>370</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-true
+declares end
 </panel_attributes>
     <additional_attributes>10.0;20.0;350.0;20.0</additional_attributes>
   </element>
@@ -115,11 +115,60 @@ true
     <coordinates>
       <x>690</x>
       <y>340</y>
-      <w>220</w>
+      <w>270</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+new(declaresEndMsg)
+</panel_attributes>
+    <additional_attributes>250.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>940</x>
+      <y>330</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>msg: 
+Message</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>440</y>
+      <w>460</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-status=INTERRUPTED</panel_attributes>
-    <additional_attributes>10.0;30.0;60.0;30.0;60.0;10.0;10.0;10.0</additional_attributes>
+sendMessage(msg)
+</panel_attributes>
+    <additional_attributes>440.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>280</y>
+      <w>30</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1080</x>
+      <y>240</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>conn: 
+Connection</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
