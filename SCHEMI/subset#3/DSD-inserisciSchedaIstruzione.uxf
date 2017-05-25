@@ -275,18 +275,18 @@ sendMessage(msg)
     <id>Relation</id>
     <coordinates>
       <x>1260</x>
-      <y>240</y>
+      <y>324</y>
       <w>36</w>
-      <h>480</h>
+      <h>396</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;310.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1212</x>
-      <y>192</y>
+      <y>276</y>
       <w>120</w>
       <h>60</h>
     </coordinates>

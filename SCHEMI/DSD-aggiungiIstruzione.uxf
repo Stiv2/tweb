@@ -102,11 +102,11 @@ getInstance(instruction)
     <coordinates>
       <x>250</x>
       <y>690</y>
-      <w>230</w>
+      <w>210</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-setProgramma(program)
+setProgram(program)
 </panel_attributes>
     <additional_attributes>10.0;30.0;60.0;30.0;60.0;10.0;10.0;10.0</additional_attributes>
   </element>
