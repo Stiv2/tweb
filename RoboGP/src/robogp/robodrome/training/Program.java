@@ -1,14 +1,21 @@
 package robogp.robodrome.training;
 
 import java.util.ArrayList;
+import robogp.robodrome.Direction;
+
+import robogp.robodrome.view.RobodromeView;
 
 /**
  *
  * @author Stefano
  */
+
 public class Program implements Runnable {
      private static Program singleInstance;
      private ArrayList <String> instruction ;
+     private final Instructions instructions; 
+     private RobodromeView toShow;
+     private int robot;
      
     public enum State {
          Started, Paused, Interrupted
@@ -16,14 +23,18 @@ public class Program implements Runnable {
     
       private State status;
     
-    private Program (String instruction){
+    private Program (String instruction,RobodromeView toShow,int robot){
         this.instruction =new ArrayList();
         this.instruction.add(instruction);
+        this.instructions=Instructions.getInstance();
+        this.toShow = toShow;
+        this.robot= robot;
+        
     }
     
-    public static Program getInstance(String instruction) {
+    public static Program getInstance(String instruction,RobodromeView toShow,int robot) {
         if (Program.singleInstance == null) {
-            Program.singleInstance = new Program(instruction);
+            Program.singleInstance = new Program(instruction,toShow,robot);
         }
         return  Program.singleInstance;
     }
@@ -46,9 +57,17 @@ public class Program implements Runnable {
     
     public void run(){
      int index=0;
-     String instr; 
+     Istruction execIinst; 
+     
+    if (instructions!=null||instructions!=null){
        while ((index < instruction.size())&&( status == State.Started )){
-         instr = this.instruction.get(index);
+         for (int i=0; i<instructions.getInstruction().size();i++){
+             if (this.instruction.get(index).equals(instructions.getInstruction().get(i).getName())){
+                 execIinst= instructions.getInstruction().get(i);
+                  toShow.addRobotMove(robot,execIinst.getMovement(),Direction.W,execIinst.getRotation());
+             }
       }
     }
+   }
+  }
 }

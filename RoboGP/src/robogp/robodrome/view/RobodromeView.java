@@ -307,12 +307,7 @@ public class RobodromeView extends JComponent {
      * Attenzione: non pu&ograve; essere invocato quando c'&egrave;
      * un'animazione in corso.
      *
-     * @param robotNum il numero assegnato al robot da inserire (da 0 ad N-1,
-     * dove N &egrave; il numero di robot specificati alla creazione del
-     * robodromo
-     * @param name il nome del robot, scelto fra "red", "blue", "yellow",
-     * green", "emerald", "orange", "violet", "turquoise"; il nome identifica
-     * quale segnalino verr&agrave; usato
+     * @param robot mette il robot nella posizione indicata
      * @param dir la direzione in cui guarda il robot inizialmente
      * @param row la riga a cui si posiziona il robot
      * @param col la colonna a cui si posiziona il robot
@@ -337,7 +332,7 @@ public class RobodromeView extends JComponent {
      * addRobot. Attenzione: non pu&ograve; essere invocato quando c'&egrave;
      * un'animazione in corso.
      *
-     * @param robotNum il robot da posizionare
+     * @param robot il robot da posizionare
      * @param dir la direzione in cui guarda il robot inizialmente
      * @param row la riga a cui si posiziona il robot
      * @param col la colonna a cui si posiziona il robot
