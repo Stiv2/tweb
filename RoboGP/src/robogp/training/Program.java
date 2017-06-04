@@ -1,7 +1,9 @@
-package robogp.robodrome.training;
+package robogp.training;
 
 import java.util.ArrayList;
+import robogp.matchmanager.RobotMarker;
 import robogp.robodrome.Direction;
+import robogp.robodrome.Rotation;
 
 import robogp.robodrome.view.RobodromeView;
 
@@ -15,16 +17,16 @@ public class Program implements Runnable {
      private ArrayList <String> instruction ;
      private final Instructions instructions; 
      private RobodromeView toShow;
-     private int robot;
+     private RobotMarker robot;
      
     public enum State {
-         Started, Paused, Interrupted
+         Started, Paused,Interrupted
     };
     
       private State status;
     
-    private Program (String instruction,RobodromeView toShow,int robot){
-        this.instruction =new ArrayList();
+    private Program (String instruction,RobodromeView toShow,RobotMarker robot){
+        this.instruction =new ArrayList<String>();
         this.instruction.add(instruction);
         this.instructions=Instructions.getInstance();
         this.toShow = toShow;
@@ -32,7 +34,7 @@ public class Program implements Runnable {
         
     }
     
-    public static Program getInstance(String instruction,RobodromeView toShow,int robot) {
+    public static Program getInstance(String instruction,RobodromeView toShow,RobotMarker robot) {
         if (Program.singleInstance == null) {
             Program.singleInstance = new Program(instruction,toShow,robot);
         }
@@ -59,15 +61,24 @@ public class Program implements Runnable {
      int index=0;
      Istruction execIinst; 
      
-    if (instructions!=null||instructions!=null){
+     status=State.Started;
+
+    if (instruction!=null||instructions!=null){
        while ((index < instruction.size())&&( status == State.Started )){
+           
          for (int i=0; i<instructions.getInstruction().size();i++){
+               
              if (this.instruction.get(index).equals(instructions.getInstruction().get(i).getName())){
-                 execIinst= instructions.getInstruction().get(i);
-                  toShow.addRobotMove(robot,execIinst.getMovement(),Direction.W,execIinst.getRotation());
+                   execIinst= instructions.getInstruction().get(i);
+                  
+                  toShow.addRobotMove(robot, execIinst.getMovement(), Direction.E, execIinst.getRotation());
+                
              }
       }
+      index=index+1;
+      System.out.println("pippo");  
     }
    }
+    
   }
 }

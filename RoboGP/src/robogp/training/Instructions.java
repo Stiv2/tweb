@@ -1,4 +1,4 @@
-package robogp.robodrome.training;
+package robogp.training;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,7 +1,7 @@
-package robogp.robodrome.training;
+package robogp.training;
 
 
-import java.awt.BorderLayout;
+
 import robogp.matchmanager.RobotMarker;
 import robogp.robodrome.Direction;
 import robogp.robodrome.Robodrome;
@@ -15,7 +15,7 @@ import robogp.robodrome.view.RobodromeView;
  */
 public class Training extends javax.swing.JFrame{
     private static Training singleInstance;
-    private final Robodrome robodrome;
+    private javax.swing.JSplitPane splitPane;
     private Program program;
     private final RobodromeView toShow;
     private RobotMarker robot; 
@@ -27,12 +27,14 @@ public class Training extends javax.swing.JFrame{
     
     private Training (String rbdName){
         String rbdFileName = "robodromes/" + rbdName + ".txt";
-        this.robodrome = new Robodrome(rbdFileName);
-         initComponents();
-        toShow = new RobodromeView(new Robodrome(rbdFileName ), 55, 1); 
-        program=Program.getInstance("U-turn",toShow,1);                         //NOOOOOOOOO
-        robot = new RobotMarker("robot-blue", "blue");                          //NOOOOOOOOOOOOOOOOO
-        this.getContentPane().add(toShow, BorderLayout.CENTER);                 //NOOOOOOOOOOOOOOOOO
+       initComponents();
+        toShow = new RobodromeView(new Robodrome(rbdFileName), 55);
+        splitPane.setRightComponent( toShow );
+        robot = new RobotMarker("robot-blue", "blue");
+        program=Program.getInstance("U-turn",toShow,robot);                      
+                                  //NOOOOOOOOOOOOOOOOO
+       // this.getContentPane().add(toShow, BorderLayout.CENTER);     
+         toShow.placeRobot(robot, Direction.E, 5, 0, true);
         
     }
     
@@ -45,11 +47,19 @@ public class Training extends javax.swing.JFrame{
     
      public void start() {
         this.status = State.Started;
-        program.run(); 
-        robot.free();                                                           //NOOOOOOOOOOOOOOOOO
-        toShow.addRobot( robot,  Direction.E, 5, 5, true); 
+        robot.free(); 
+        //toShow.addRobot( robot,  Direction.E, 5, 5, true); 
+        program.run();
+            toShow.play();
+        
+        //NOOOOOOOOOOOOOOOOO
+        
+        
         
      } 
+     public State getCourrentState (){
+         return this.status; 
+     }
        private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,10 +96,10 @@ public class Training extends javax.swing.JFrame{
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
              
-              Training trainig =  new Training("checkmate");
+             /* Training trainig =  new Training("checkmate");
                trainig.setVisible(true);
                trainig.start(); 
-               
+               */
             }
         });
     }

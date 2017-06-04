@@ -1,4 +1,4 @@
-package robogp.robodrome.training;
+package robogp.training;
 
 import robogp.robodrome.Rotation;
 
