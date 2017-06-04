@@ -1,0 +1,34 @@
+/* 
+    Created on : 28-dic-2016, 15.33.06
+    Author     : Stefano Benedetto
+    Lab6 (File fifteen.css)
+  
+Static style proprieties of the  fifteen.html page.
+*/
+
+
+/*general proprieties*/
+body {
+    font-style: italic;
+    font-size: 14pt;
+    text-align: center;
+}
+
+/*puzzlearea proprieties*/
+#puzzlearea {
+    width: 400px;
+    height: 400px;
+    font-size: 40pt;
+    margin: auto;
+    
+}
+
+/*squares proprieties*/
+#puzzlearea>div {
+    position:absolute;
+    height: 90px;
+    width : 90px;
+    border-style:  solid;
+    border-width: 5px;  
+}
+

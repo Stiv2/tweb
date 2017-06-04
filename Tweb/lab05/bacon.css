@@ -1,0 +1,73 @@
+/*
+ *   Created on : 03-dic-2016,
+ *   Author     : Stefano Benedetto 
+ *   Lab5 (File bacon.css)
+ * 
+ *   Pagina di stile di myMDB.
+*/ 
+
+body {
+     background-color: #DAD9D4;
+     font-family: "Verdana",sans-serif; 
+}
+
+/*contenitore di tutti gli elementi*/
+#frame {
+    width:90%; 
+    background-color: white;
+    margin: auto;
+    
+}
+
+/*Banner e validatori*/
+#w3c,#banner {
+   background-image: url("http://www.cs.washington.edu/education/courses/cse190m/12sp/homework/5/banner-background.png");
+   color: white;
+   padding: 1em;
+   
+   
+}
+
+/*Corpo della pagina*/
+#main{
+    text-align: center;
+    color:   #3b3a30;
+    padding: 1em; 
+   
+}
+
+/*Form di ricerca*/
+form{
+    text-align: left;
+     width: 24em;
+     margin: auto;
+     margin-top: 1em;
+     margin-bottom: 1em;
+}
+
+/*Tabella risulti query*/
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 75%;
+    
+}
+tbody tr:nth-child(odd) {
+   background-color: #DAD9D4;
+}
+
+/*form log out*/
+
+#logout{
+    width: 50%;
+    float: right; 
+    text-align: right;
+}
+
+.logout:hover {
+    background-color: #422e2e;
+    color: white;
+}
+    
+    

@@ -1,0 +1,135 @@
+/*
+ *   Created on : 03-dic-2016,
+ *   Author     : Stefano Benedetto 
+ *   Lab5 (File bacon.css)
+ * 
+ *   Pagina di stile di myMDB.
+*/ 
+
+body {
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    margin: 0px;
+    background-color: black;
+    
+}
+a, a:hover {
+	color: #2ba560;
+	text-decoration: none;
+   
+}
+
+
+/*frame*/
+
+#frame {
+  overflow: hidden;
+  background: url(https://static.pexels.com/photos/196383/pexels-photo-196383.jpeg) center center no-repeat ;
+  background-size: 1366px 510px;
+}
+    
+#page-title {
+	padding: 78px 0 78px 0;
+        left: 50%;
+	top: 50%;
+       
+}
+.page-title-text {
+	width: 600px;
+	margin: 0 auto;	
+	color: #fff;
+}
+
+h1 {
+	color: #fff;
+	text-shadow: 0 1px 6px rgba(51, 51, 51, 0.2);
+        margin-bottom: 20px;
+}
+
+.page-title-text p {
+    font-size: 22px;
+    line-height: 36px;
+    text-shadow: 0 1px 5px rgba(51, 51, 51, 0.4);
+}
+
+.page-title-bottom-link {
+	padding-top: 25px;
+	padding-bottom: 7px;
+}
+
+#big-link-1 {
+	display: inline-block;
+	margin: 0 5px;
+	padding: 15px 20px;
+	background: #2ba560;
+	border: 0;
+	font-size: 22px;
+    font-weight: 300;
+    line-height: 22px;
+    color: #fff;
+    border-radius: 6px;
+    
+}
+ #big-link-2 {
+	display: inline-block;
+	margin: 0 5px;
+	padding: 14px 19px;
+	background: none;
+	border: 1px solid #fff;
+	font-size: 22px;
+    font-weight: 300;
+    line-height: 22px;
+    color: #fff;
+    border-radius: 6px;
+}
+
+/*form*/
+form{
+    width: 600px;
+    float: left;
+    padding: 78px 0 78px 0;
+    text-align: center;
+   
+ }
+input  { 
+	
+	background: rgba(0,0,0,0.3);
+	margin: 10px;
+	padding: 15px;
+	font-size: 13px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	
+}
+button{
+	display: inline-block;
+	margin: 0 5px;
+	padding: 15px 20px;
+	background: #2ba560;
+	border: 0;
+	font-size: 22px;
+        font-weight: 300;
+        line-height: 22px;
+        color: #fff;
+        border-radius: 6px;
+    
+}
+/*Banner e validatori*/
+#w3c,#banner {
+   background-color: black;
+   color: white;
+   padding: 1em;
+   margin: 0px;
+   text-align: left;
+   
+   
+}
+
+
+
+    
