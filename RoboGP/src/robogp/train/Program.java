@@ -1,9 +1,12 @@
-package robogp.training;
+package robogp.train;
+
+
+
 
 import java.util.ArrayList;
 import robogp.matchmanager.RobotMarker;
 import robogp.robodrome.Direction;
-import robogp.robodrome.Rotation;
+
 
 import robogp.robodrome.view.RobodromeView;
 
