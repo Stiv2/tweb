@@ -25,11 +25,17 @@ public class Istruction {
        this.movement=movement;  
        switch (rotation){
            case 90:
-               this.rotation=Rotation.CW90;
+               if(priorityMax==420)
+                  this.rotation=Rotation.CW90;
+               else 
+                  this.rotation=Rotation.CCW90; 
+               break;
            case 180:
                this.rotation=Rotation.CW180;
+                break;
            case 0:
                this.rotation=Rotation.NO;
+                break;
        }
    }
    

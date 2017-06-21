@@ -21,10 +21,7 @@ public class Program implements Runnable {
      private final Instructions instructions; 
      private RobodromeView toShow;
      private RobotMarker robot;
-     
-    public enum State {
-         Started, Paused,Interrupted
-    };
+
     
       private State status;
     
@@ -34,6 +31,7 @@ public class Program implements Runnable {
         this.instructions=Instructions.getInstance();
         this.toShow = toShow;
         this.robot= robot;
+        this.status=State.getInstance();
         
     }
     
@@ -64,24 +62,23 @@ public class Program implements Runnable {
      int index=0;
      Istruction execIinst; 
      
-     status=State.Started;
+    
+     
 
     if (instruction!=null||instructions!=null){
-       while ((index < instruction.size())&&( status == State.Started )){
-           
+       while ((index < instruction.size())&&( status.getState().equals("started") )){
+          System.out.print(instruction.get(index));
          for (int i=0; i<instructions.getInstruction().size();i++){
-               
-             if (this.instruction.get(index).equals(instructions.getInstruction().get(i).getName())){
-                   execIinst= instructions.getInstruction().get(i);
-                  
+             if (instruction.get(index).equals(instructions.getInstruction().get(i).getName())){
+                  execIinst= instructions.getInstruction().get(i);
                   toShow.addRobotMove(robot, execIinst.getMovement(), Direction.E, execIinst.getRotation());
-                
+
              }
       }
-      index=index+1;
-      System.out.println("pippo");  
+      index++; 
     }
    }
     
   }
-}
+ }
+

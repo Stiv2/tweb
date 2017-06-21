@@ -29,7 +29,7 @@ public class Instructions {
             while ((line = reader.readLine()) != null) {        
             String[] pr=line.split(";");
             Istruction newInstructio=new Istruction(pr[0],Integer.parseInt(pr[1])
-                    ,Integer.parseInt(pr[2]),Integer.parseInt(pr[3]),Integer.parseInt(pr[3]),Integer.parseInt(pr[4]));
+                    ,Integer.parseInt(pr[2]),Integer.parseInt(pr[3]),Integer.parseInt(pr[4]),Integer.parseInt(pr[5]));
             instructions.add(newInstructio);     
             }
      } catch (IOException ex) {ex.printStackTrace();}

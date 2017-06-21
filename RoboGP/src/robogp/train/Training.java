@@ -29,9 +29,11 @@ public class Training extends javax.swing.JFrame{
        initComponents();
         toShow = new RobodromeView(new Robodrome(rbdFileName), 55);
         robot = new RobotMarker("robot-blue", "blue");
-        program=Program.getInstance("U-turn",toShow,robot);                      
+        program=Program.getInstance("Move1",toShow,robot);                      
         this.getContentPane().add(toShow, BorderLayout.CENTER);     
         toShow.placeRobot(robot, Direction.E, 5, 0, true);
+        state= State.getInstance();
+       
     }
     
     public static Training getInstance(String rbdName) {
@@ -42,8 +44,15 @@ public class Training extends javax.swing.JFrame{
     }
     
      public void start() {
-        state.setState(State.Started); 
+        state.setStarted();
         robot.free(); 
+       
+        ////
+        program.addInstruction("Move2");
+        program.addInstruction("TurnRight");
+        program.addInstruction("TurnLeft");
+        program.addInstruction("U-turn");
+        //
         program.run();
         toShow.play();
      } 
@@ -86,6 +95,7 @@ public class Training extends javax.swing.JFrame{
               Training trainig =  new Training("checkmate");
               trainig.setVisible(true);
               trainig.start();  
+             
             }
         });
     }
