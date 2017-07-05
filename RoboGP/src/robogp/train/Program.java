@@ -6,6 +6,9 @@ package robogp.train;
 import java.util.ArrayList;
 import robogp.matchmanager.RobotMarker;
 import robogp.robodrome.Direction;
+import robogp.robodrome.Robodrome;
+import robogp.robodrome.Rotation;
+import robogp.robodrome.view.RobodromeAction;
 
 
 import robogp.robodrome.view.RobodromeView;
@@ -21,26 +24,35 @@ public class Program implements Runnable {
      private final Instructions instructions; 
      private RobodromeView toShow;
      private RobotMarker robot;
+     private RobodromeAction robodromeAction;
+     private Direction direction=Direction.E;
 
     
       private State status;
     
-    private Program (String instruction,RobodromeView toShow,RobotMarker robot){
+    private Program (String instruction,RobodromeView toShow,RobotMarker robot,RobodromeAction robodromeAction){
         this.instruction =new ArrayList<String>();
         this.instruction.add(instruction);
         this.instructions=Instructions.getInstance();
         this.toShow = toShow;
         this.robot= robot;
+        this.robodromeAction=robodromeAction;
         this.status=State.getInstance();
         
     }
     
-    public static Program getInstance(String instruction,RobodromeView toShow,RobotMarker robot) {
+    public static Program getInstance(String instruction) {
+        singleInstance.addInstruction (instruction);
+        return  Program.singleInstance;
+    }
+    
+    public static Program getInstance(String instruction,RobodromeView toShow,RobotMarker robot,RobodromeAction robodromeAction) {
         if (Program.singleInstance == null) {
-            Program.singleInstance = new Program(instruction,toShow,robot);
+            Program.singleInstance = new Program(instruction,toShow,robot,robodromeAction);
         }
         return  Program.singleInstance;
     }
+    
     
     public void  addInstruction (String instruction){
            this.instruction.add(instruction);
@@ -48,6 +60,75 @@ public class Program implements Runnable {
     
     public void rmInstruction (String instruction){
         this.instruction.remove(instruction);  
+    }
+    
+    public void directionRefresh(Rotation rot){
+        switch(direction){
+            case N:
+                switch(rot){
+                    case CCW90:
+                        direction=Direction.W;
+                        break;
+                    case CW180:
+                        direction=Direction.S;
+                        break;
+                    case CW90:
+                        direction=Direction.E;
+                        break;
+                     case CCW180:
+                        direction=Direction.S;
+                        break;
+                }
+              break;
+            case E:
+                switch(rot){
+                    case CCW90:
+                        direction=Direction.N;
+                        break;
+                    case CW180:
+                        direction=Direction.W;
+                        break;
+                    case CW90:
+                        direction=Direction.S;
+                        break;
+                     case CCW180:
+                        direction=Direction.W;
+                        break;
+                }
+             break;
+            case S:
+                switch(rot){
+                    case CCW90:
+                        direction=Direction.E;
+                        break;
+                    case CW180:
+                        direction=Direction.N;
+                        break;
+                    case CW90:
+                        direction=Direction.W;
+                        break;
+                     case CCW180:
+                        direction=Direction.N;
+                        break;
+                }
+             break;
+            case W:
+                switch(rot){
+                    case CCW90:
+                        direction=Direction.S;
+                        break;
+                    case CW180:
+                        direction=Direction.E;
+                        break;
+                    case CW90:
+                        direction=Direction.N;
+                        break;
+                     case CCW180:
+                        direction=Direction.E;
+                        break;
+                }
+             break;
+        }
     }
     
     public void swapInstruction (String instruction_1,String instruction_2){
@@ -62,23 +143,33 @@ public class Program implements Runnable {
      int index=0;
      Istruction execIinst; 
      
-    
-     
-
     if (instruction!=null||instructions!=null){
        while ((index < instruction.size())&&( status.getState().equals("started") )){
-          System.out.print(instruction.get(index));
          for (int i=0; i<instructions.getInstruction().size();i++){
              if (instruction.get(index).equals(instructions.getInstruction().get(i).getName())){
-                  execIinst= instructions.getInstruction().get(i);
-                  toShow.addRobotMove(robot, execIinst.getMovement(), Direction.E, execIinst.getRotation());
+                  execIinst= instructions.getInstruction().get(i); 
+                  
+                 if(execIinst.getMovement()-robodromeAction.animation(execIinst.getMovement(),direction)!=0){
+                      
+                      toShow.addRobotMove(robot, robodromeAction.animation(execIinst.getMovement(),direction), direction,Rotation.CW180);
+                      directionRefresh(Rotation.CW180);
+                   }
+                    else {
+                      toShow.addRobotMove(robot, execIinst.getMovement(), direction, execIinst.getRotation());
+                      directionRefresh(execIinst.getRotation());
+                    }
+                      
+                  toShow.addPause(250);
+                  
+                  
+                  
+            }
+          }
+         index++; 
+       }
+     }
+    toShow.play();
 
-             }
-      }
-      index++; 
-    }
    }
-    
-  }
  }
 

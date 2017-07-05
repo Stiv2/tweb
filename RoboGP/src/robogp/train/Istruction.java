@@ -22,7 +22,7 @@ public class Istruction {
        this.number=number; 
        this.priorityMin=priorityMin;
        this.priorityMax=priorityMax;
-       this.movement=movement;  
+       this.movement=movement;
        switch (rotation){
            case 90:
                if(priorityMax==420)

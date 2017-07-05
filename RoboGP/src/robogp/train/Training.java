@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import robogp.matchmanager.RobotMarker;
 import robogp.robodrome.Direction;
 import robogp.robodrome.Robodrome;
+import robogp.robodrome.view.RobodromeAction;
 import robogp.robodrome.view.RobodromeView;
 
 
@@ -19,7 +20,9 @@ public class Training extends javax.swing.JFrame{
     private final Program program;
     private final RobodromeView toShow;
     private final RobotMarker robot; 
+    private final RobodromeAction robodromeAction; 
     private State state;
+    private final int size=55;
 
     
     
@@ -27,12 +30,15 @@ public class Training extends javax.swing.JFrame{
     private Training (String rbdName){
         String rbdFileName = "robodromes/" + rbdName + ".txt";
        initComponents();
-        toShow = new RobodromeView(new Robodrome(rbdFileName), 55);
-        robot = new RobotMarker("robot-blue", "blue");
-        program=Program.getInstance("Move1",toShow,robot);                      
+        Robodrome robodrome = new Robodrome(rbdFileName);
+        toShow = new RobodromeView(robodrome,size);
+        robot = new RobotMarker("robot-blue", "blue");             
         this.getContentPane().add(toShow, BorderLayout.CENTER);     
         toShow.placeRobot(robot, Direction.E, 5, 0, true);
+        robodromeAction = new RobodromeAction (toShow,robodrome,0,5);
+        program=Program.getInstance("Move1",toShow,robot,robodromeAction); 
         state= State.getInstance();
+        
        
     }
     
@@ -47,15 +53,21 @@ public class Training extends javax.swing.JFrame{
         state.setStarted();
         robot.free(); 
        
-        ////
+        ///NOOOOOOOO
+        program.addInstruction("Move2");
+        program.addInstruction("U-turn");
         program.addInstruction("Move2");
         program.addInstruction("TurnRight");
-        program.addInstruction("TurnLeft");
+        program.addInstruction("Move2");
         program.addInstruction("U-turn");
-        //
+        program.addInstruction("Move2");
+        
+            
+        
         program.run();
-        toShow.play();
      } 
+     
+             
 
        private void initComponents() {
 
@@ -94,7 +106,8 @@ public class Training extends javax.swing.JFrame{
             public void run() {
               Training trainig =  new Training("checkmate");
               trainig.setVisible(true);
-              trainig.start();  
+              trainig.start(); 
+              
              
             }
         });

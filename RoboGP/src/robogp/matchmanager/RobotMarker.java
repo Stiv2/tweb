@@ -17,7 +17,7 @@ public class RobotMarker implements Serializable {
 
     private transient BufferedImage robotImage;
     private final String name;
-    private final String color;
+    private String color;
     private String owner;
     private int dockNumber;
 
