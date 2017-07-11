@@ -6,7 +6,6 @@ package robogp.train;
 import java.util.ArrayList;
 import robogp.matchmanager.RobotMarker;
 import robogp.robodrome.Direction;
-import robogp.robodrome.Robodrome;
 import robogp.robodrome.Rotation;
 import robogp.robodrome.view.RobodromeAction;
 
@@ -20,18 +19,18 @@ import robogp.robodrome.view.RobodromeView;
 
 public class Program implements Runnable {
      private static Program singleInstance;
-     private ArrayList <String> instruction ;
-     private final Instructions instructions; 
-     private RobodromeView toShow;
-     private RobotMarker robot;
-     private RobodromeAction robodromeAction;
+     private  final   ArrayList <String> instruction ;
+     private  final Instructions instructions;
+     private final RobodromeView toShow;
+     private final RobotMarker robot;
+     private final RobodromeAction robodromeAction;
      private Direction direction=Direction.E;
 
     
-      private State status;
+      private final State status;
     
     private Program (String instruction,RobodromeView toShow,RobotMarker robot,RobodromeAction robodromeAction){
-        this.instruction =new ArrayList<String>();
+        this.instruction=new ArrayList(); 
         this.instruction.add(instruction);
         this.instructions=Instructions.getInstance();
         this.toShow = toShow;
@@ -40,7 +39,9 @@ public class Program implements Runnable {
         this.status=State.getInstance();
         
     }
-    
+    public static Program getInstance(){
+        return  Program.singleInstance;
+    }
     public static Program getInstance(String instruction) {
         singleInstance.addInstruction (instruction);
         return  Program.singleInstance;
@@ -49,13 +50,16 @@ public class Program implements Runnable {
     public static Program getInstance(String instruction,RobodromeView toShow,RobotMarker robot,RobodromeAction robodromeAction) {
         if (Program.singleInstance == null) {
             Program.singleInstance = new Program(instruction,toShow,robot,robodromeAction);
+        }else{
+            if (instruction!=null)
+                 singleInstance.addInstruction(instruction);
         }
         return  Program.singleInstance;
     }
     
     
-    public void  addInstruction (String instruction){
-           this.instruction.add(instruction);
+    private  void  addInstruction (String instru){
+          this.instruction.add(instru);
     }
     
     public void rmInstruction (String instruction){
@@ -150,9 +154,9 @@ public class Program implements Runnable {
                   execIinst= instructions.getInstruction().get(i); 
                   
                  if(execIinst.getMovement()-robodromeAction.animation(execIinst.getMovement(),direction)!=0){
-                      
-                      toShow.addRobotMove(robot, robodromeAction.animation(execIinst.getMovement(),direction), direction,Rotation.CW180);
-                      directionRefresh(Rotation.CW180);
+
+                      toShow.addRobotMove(robot, robodromeAction.animation(execIinst.getMovement(),direction)-1, direction,execIinst.getRotation());
+
                    }
                     else {
                       toShow.addRobotMove(robot, execIinst.getMovement(), direction, execIinst.getRotation());
@@ -160,6 +164,7 @@ public class Program implements Runnable {
                     }
                       
                   toShow.addPause(250);
+                  robodromeAction.cellAnimation(direction);
                   
                   
                   
@@ -169,7 +174,8 @@ public class Program implements Runnable {
        }
      }
     toShow.play();
-
+    instruction.clear();
    }
+    
  }
 
