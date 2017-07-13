@@ -17,13 +17,13 @@ import robogp.robodrome.view.RobodromeView;
  * @author Stefano
  */
 
-public class Program implements Runnable {
+public class Program  extends java.util.Observable  implements Runnable  {
      private static Program singleInstance;
-     private  final   ArrayList <String> instruction ;
+     private  final ArrayList <String> instruction ;
      private  final Instructions instructions;
-     private final RobodromeView toShow;
-     private final RobotMarker robot;
-     private final RobodromeAction robodromeAction;
+     private final  RobodromeView toShow;
+     private final  RobotMarker robot;
+     private final  RobodromeAction robodromeAction;
      private Direction direction=Direction.E;
 
     
@@ -38,6 +38,7 @@ public class Program implements Runnable {
         this.robodromeAction=robodromeAction;
         this.status=State.getInstance();
         
+        
     }
     public static Program getInstance(){
         return  Program.singleInstance;
@@ -46,6 +47,12 @@ public class Program implements Runnable {
         singleInstance.addInstruction (instruction);
         return  Program.singleInstance;
     }
+
+    public ArrayList<String> getInstruction() {
+        return instruction;
+    }
+    
+    
     
     public static Program getInstance(String instruction,RobodromeView toShow,RobotMarker robot,RobodromeAction robodromeAction) {
         if (Program.singleInstance == null) {
@@ -59,13 +66,33 @@ public class Program implements Runnable {
     
     
     private  void  addInstruction (String instru){
+        if (instruction!=null){
           this.instruction.add(instru);
+          setChanged();
+          notifyObservers();
+        }     
+          
     }
     
-    public void rmInstruction (String instruction){
-        this.instruction.remove(instruction);  
+    public void rmInstruction (int instruction){
+        this.instruction.remove(instruction+1);  
+        setChanged();
+        notifyObservers();
     }
     
+    public void swapInstruction (int instruction_1,int instruction_2){ 
+        
+        String instruction1 = this.instruction.get(instruction_1+1);
+        this.instruction.set(instruction_1+1,this.instruction.get(instruction_2+1));
+        this.instruction.set(instruction_2+1,instruction1);
+        System.out.println(instruction1);
+        System.out.println(this.instruction.get(instruction_2+1));
+        
+          setChanged();
+          notifyObservers();
+          
+    }
+        
     public void directionRefresh(Rotation rot){
         switch(direction){
             case N:
@@ -135,13 +162,7 @@ public class Program implements Runnable {
         }
     }
     
-    public void swapInstruction (String instruction_1,String instruction_2){
-     
-          int index=instruction.indexOf(instruction_1);
-          instruction.add(index, instruction_2);
-          index=instruction.indexOf(instruction_2);
-          instruction.add(index,instruction_1);
-    }
+
     
     public void run(){
      int index=0;
@@ -162,7 +183,7 @@ public class Program implements Runnable {
                       toShow.addRobotMove(robot, execIinst.getMovement(), direction, execIinst.getRotation());
                       directionRefresh(execIinst.getRotation());
                     }
-                      
+ 
                   toShow.addPause(250);
                   robodromeAction.cellAnimation(direction);
                   

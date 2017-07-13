@@ -25,8 +25,8 @@ public class Training {
     private Training (RobodromeView robodromeView,Robodrome robodrome){
         this.toShow=robodromeView;
         robot = new RobotMarker("robot-blue", "blue");  
-        toShow.placeRobot(robot, Direction.E, 5, 0, true);
-        this.programController=new ProgramController(toShow,robot,robodrome);
+        this.programController=ProgramController.getInstance(toShow,robot,robodrome);
+         toShow.placeRobot(robot, Direction.E,5,0, true);                                  ////////////////
         state= State.getInstance(); 
     }
     
@@ -37,13 +37,22 @@ public class Training {
         return Training.singleInstance;
     }
     
+    public static ProgramController getController(){
+        return ProgramController.getInstance();
+    }
+    
     public static Training getInstance() {
         return Training.singleInstance;
     }
     
+    public void placeRobot(int posx,int posy){
+         programController.initialpos(posx,posy);
+         toShow.changeRobotPosition(robot, Direction.E, posy, posx, true);  
+    }
+    
      public void start() {
         state.setStarted();
-        programController.addInstruction("Move1");
         programController.run();
      } 
+     
 }

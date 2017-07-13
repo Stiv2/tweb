@@ -22,21 +22,21 @@ public class RobodromeAction  implements RobodromeAnimationObserver  {
 
     private  int posX;
     private int posY;
-    private  final int startPosx;
-    private final int startPosy;
+    private  int startPosx;
+    private  int startPosy;
     
     
-   public  RobodromeAction (RobodromeView toShow,Robodrome robodrome,int posx,int posy,RobotMarker robot) {
-       this.posX=posx;
-       this.posY=posy;
-       this.startPosx=posx;
-       this.startPosy=posy;
+   public  RobodromeAction (RobodromeView toShow,Robodrome robodrome,RobotMarker robot) {
+       this.posX=0;
+       this.posY=5;
+       this.startPosx=0;
+       this.startPosy=5;
        this.toShow=toShow;
        this.robodrome=robodrome;  
        this.toShow.addObserver(this);
        this.robot= robot;
    }
-   
+  
  public  int animation(int movement,Direction dir){
     int move=0;
      switch(dir){
@@ -144,6 +144,14 @@ public  void cellAnimation (Direction direction) {
               
         }
    }
+
+public void SetInitialPos(int posx,int posy){
+    this.startPosx=posx;
+    this.startPosy=posy;
+    posX=startPosx;
+    posY=startPosy;
+    
+}
     
     @Override
    public void animationFinished() {
